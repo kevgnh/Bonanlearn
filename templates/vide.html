@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vies épuisées</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #7a4791;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .timer {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tu viens de perdre une vie ou tu n'en a plus !</h1>
+    <p>Prochaine vie disponible dans :{{temps_restant}}</p>
+    <div class="timer" id="compte">
+        <button onclick="location.href='/'">Retour</button>
+    </div>
+
+    <script>
+        let temps = {{t}};
+        function majTimer() {
+            let minutes = Math.floor(temps / 60);
+            let secondes = temps % 60;
+
+            document.getElementById("compte").innerText = 
+                ${minutes.toString().padStart(2, '0')} : ${secondes.toString().padStart(2, '0')};
+
+            if (temps > 0) {
+                temps--;
+                setTimeout(majTimer, 1000);
+            } else {
+                // Recharger automatiquement la page une fois le temps écoulé
+                location.reload();
+            }
+        }
+
+        majTimer();
+    </script>
+</body>
+</html>

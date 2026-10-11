@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limite – Bonan</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #7a4791, #b084d1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+        }
+
+        .cours-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #7a4791;
+            color: white;
+            padding: 8px 14px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .cours-button:hover {
+            background-color: #5e326f;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #7a4791;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e2d2f4;
+            border-radius: 8px;
+            background-color: #f9f6fd;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #7a4791;
+            outline: none;
+            background-color: #fff;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            background-color: #7a4791;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #67397a;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .cours-button {
+                top: 15px;
+                right: 15px;
+                padding: 6px 10px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <a href="/cours_lim" class="cours-button">📘 Cours</a>
+        <h2>Calcul de Limite</h2>
+        <form action="/trmainlim" method="post">
+            <label for="expressionlim">Expression</label>
+            <input type="text" id="expressionlim" name="expressionlim" value="{{a}}" >
+
+            <label for="variable">Variable</label>
+            <input type="text" id="variable" name="variable">
+
+            <label for="valeur">Valeur de la variable</label>
+            <input type="text" id="valeur" name="valeur" >
+
+            <label for="sens">Sens (ex: +, - ou rien)</label>
+            <input type="text" id="sens" name="sens" >
+
+            <div class="btn-container">
+                <button type="submit" name="action" value="racine_limite">&radic;</button>
+                <button type="submit">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

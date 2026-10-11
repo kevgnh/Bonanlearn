@@ -1,0 +1,2 @@
+li=[]
+print(len(li))

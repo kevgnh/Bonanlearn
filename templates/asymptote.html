@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cours de Maths</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+
+        /* Feedback bar */
+        #feedback {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            font-family: sans-serif;
+            animation: slideDown 0.6s ease-out, fadeOut 0.6s ease-in 2.5s forwards;
+            z-index: 1000;
+            display: none;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+            to   { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+        }
+
+        /* Autres styles conservés */
+        .progress-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-text {
+            font-weight: bold;
+            color: #7a4791;
+            font-size: 1em;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #7a4791;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0 8px;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #693a7f;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            height: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #7a4791;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .vies-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .vie {
+            margin-left: 8px;
+            color: red;
+        }
+
+        .content {
+            line-height: 1.6;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            background-color: #7a4791;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-button:hover {
+            background-color: #693a7f;
+        }
+
+        a.nav-button {
+            display: inline-flex;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de feedback -->
+    <div id="feedback"></div>
+
+    <div class="container">
+
+        <div class="progress-wrapper">
+            <div class="progress-text" id="progress-text">{{ progress }}/10</div>
+            <button class="close-btn" title="Fermer" onclick="location.href='/'">×</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="vies-container" id="vies-container"></div>
+
+        <div class="content">
+            {{ k|safe }}
+        </div>
+
+        <div class="button-container">
+            <a href="{{ url_for('backscape_as') }}" class="nav-button">Back</a>
+            <button class="nav-button" onclick="location.href='/next_as'">Next</button>
+        </div>
+
+    </div>
+
+    <script>
+        function setProgression(actuel, max) {
+            let pourcentage = (actuel / max) * 100;
+            document.getElementById("progress-bar").style.width = pourcentage + "%";
+            document.getElementById("progress-text").textContent = actuel + "/" + max;
+        }
+
+        function setVies(nombreVies) {
+            const container = document.getElementById("vies-container");
+            container.innerHTML = "";
+            for (let i = 0; i < nombreVies; i++) {
+                const vie = document.createElement("span");
+                vie.className = "vie";
+                vie.innerHTML = "❤";
+                container.appendChild(vie);
+            }
+        }
+
+        setProgression({{ progress }}, 10);
+        setVies({{ l }});
+
+        // Affichage de la barre de feedback
+        const reponse = {{ reponse | tojson|default('null') }};
+        const feedback = document.getElementById("feedback");
+
+        if (reponse =='1'||reponse==null ) {
+            feedback.textContent = "✅ Bien joué, continue !";
+            feedback.style.backgroundColor = "#4CAF50";  // vert
+            feedback.style.display = "block";
+        } else if(reponse=='0') {
+            feedback.textContent = "❌ Mauvaise réponse, continue !";
+            feedback.style.backgroundColor = "#f44336";  // rouge
+            feedback.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

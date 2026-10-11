@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:#7a4791;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            width: 360px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .form-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-box h2 {
+            margin-bottom: 30px;
+            color: #7b2ff7;
+            font-size: 26px;
+        }
+
+        .form-box input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 18px;
+            border: 2px solid #e1d6f9;
+            border-radius: 8px;
+            background: #f9f7fc;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-box input:focus {
+            outline: none;
+            border-color: #7b2ff7;
+            background: #fff;
+        }
+
+        .form-box button {
+            background: #7b2ff7;
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-box button:hover {
+            background: #6200e2;
+        }
+
+        .form-box a {
+            display: block;
+            margin-top: 18px;
+            font-size: 14px;
+            color: #7b2ff7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .form-box a:hover {
+            color: #4e1b99;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>Connexion</h2>
+        <form method="POST" action="/verif_login">
+            <input type="text" name="ID" placeholder="Adresse e-mail ou username" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
+            <button type="submit">Se connecter</button>
+        </form>
+        <a href="/sign-up">Pas encore inscrit ? Créer un compte</a>
+    </div>
+</body>
+</html>

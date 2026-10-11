@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Affichage variable</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #7a4791, #b084d1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .content {
+            background: rgba(122, 71, 145, 0.85); /* #7a4791 avec un peu de transparence */
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            font-size: 2rem;
+            text-align: center;
+            max-width: 90vw;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        lim<sub>{{i}}→{{v}}</sub>{{E}} ={{an}}
+    </div>
+</body>
+</html>

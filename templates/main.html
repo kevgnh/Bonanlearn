@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/jpg" href="{{url_for('static',filename='images/logo2.jpg')}}">
+  <title>Main - Bonalearn</title>
+  <style>
+    :root {
+      --violet: #7a4791;
+      --violet-hover: #693a7f;
+      --background-soft: #f7f6fb;
+      --text-dark: #222;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-soft);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--violet);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: var(--violet-hover);
+    }
+
+    .menu-btn {
+      font-size: 26px;
+      color: var(--violet);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .menu-btn:hover {
+      opacity: 0.7;
+    }
+
+    /* LOGO IMAGE TOP */
+    .logo-img-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: -30px;
+    }
+
+    .logo-img-wrapper img {
+      width: 120px;
+      height: auto;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: var(--violet);
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 80px;
+      z-index: 999;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 18px 24px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .sidebar a:hover {
+      background-color: var(--violet-hover);
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      background-color: var(--background-soft);
+      flex-direction: column;
+    }
+
+    .box {
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      padding: 50px 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+      width: 360px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 45px rgba(122, 71, 145, 0.2);
+    }
+
+    h1 {
+      color: var(--violet);
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    a.main-link {
+      display: block;
+      width: 100%;
+      margin: 15px 0;
+      padding: 14px 0;
+      background: var(--violet);
+      color: white;
+      border-radius: 35px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: 0.3s;
+      box-shadow: 0 4px 12px rgba(122, 71, 145, 0.2);
+    }
+
+    a.main-link:hover {
+      background: var(--violet-hover);
+      box-shadow: 0 6px 20px rgba(122, 71, 145, 0.35);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #fafafa;
+      color: #666;
+      text-align: center;
+      padding: 25px 10px;
+      border-top: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      margin-top: 12px;
+    }
+
+    .footer-links a {
+      color: var(--violet);
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+      color: var(--violet-hover);
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .box {
+        width: 90%;
+        padding: 40px 20px;
+      }
+
+      .header {
+        padding: 12px 20px;
+      }
+
+      .logo-img-wrapper img {
+        width: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <div id="sidebar" class="sidebar" aria-hidden="true">
+    <a href="javascript:void(0)" onclick="closeSidebar()">✖ Fermer</a>
+    <a href="/login">Login</a>
+    <a href="/sign-up">Sign Up</a>
+    <a href="/logout">Déconnexion</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <button class="menu-btn" onclick="openSidebar()">☰</button>
+    <div class="logo" onclick="location.href='/'">Bonalearn</div>
+  </header>
+
+  <!-- LOGO IMAGE TOP -->
+  <div class="logo-img-wrapper">
+    <img src="{{ url_for('static', filename='images/logo2.jpg') }}" alt="Logo Bonalearn">
+  </div>
+
+  <!-- MAIN -->
+  <main class="container">
+    <section class="box">
+      <h1>Bienvenue</h1>
+      <a class="main-link" href="{{ url_for('cours_lim') }}">Cours sur limite</a>
+      <a class="main-link" href="{{ url_for('cours_der') }}">Cours sur dérivée</a>
+      <a class="main-link" href="{{ url_for('continuité') }}">Cours sur continuité</a>
+      <a class="main-link" href="{{ url_for('asymp') }}">Cours sur les asymptotes</a>
+      <a class="main-link" href="{{ url_for('variation') }}">Sens de variation</a>
+      <a class="main-link" href="{{ url_for('mainlim') }}">Calcul de limite</a>
+      <a class="main-link" href="{{ url_for('derivation') }}">Calcul de dérivée</a>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 Bonanlearn.online – Tous droits réservés.</div>
+    <div class="footer-links">
+      <a href="/privacy">Vie privée</a>
+      <a href="/cookies">Cookies</a>
+      <a href="/condition">Conditions</a>
+      <a href="/leg">Mentions légales</a>
+      <a href="https://www.instagram.com/bonanlearn" target="_blank">Instagram</a>
+      <a href="mailto:contact@bonanmaths.com">Email</a>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function openSidebar() {
+      document.getElementById("sidebar").style.width = "250px";
+      document.getElementById("sidebar").setAttribute("aria-hidden", "false");
+    }
+
+    function closeSidebar() {
+      document.getElementById("sidebar").style.width = "0";
+      document.getElementById("sidebar").setAttribute("aria-hidden", "true");
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vérification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .verif-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      color: #7a4791;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #7a4791;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:disabled {
+      background-color: #b293c4;
+      cursor: not-allowed;
+    }
+
+    button:hover:enabled {
+      background-color: #663879;
+    }
+
+    .message {
+      font-size: 14px;
+      color: gray;
+      margin-top: 10px;
+    }
+
+    .btn-renvoyer {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="verif-box">
+    <h2>Entrez votre code</h2>
+    <form method="POST" action="/trsign-up">
+      <input type="text" name="verif" placeholder="Code à 6 chiffres" required>
+      <button type="submit">Valider</button>
+    </form>
+    <div class="message">
+      Un code vous a été envoyé par email.
+    </div>
+    <div class="btn-renvoyer">
+      <button id="resendBtn" disabled>Renvoyer le code (01:30)</button>
+    </div>
+  </div>
+
+  <script>
+    const resendBtn = document.getElementById('resendBtn');
+    let timeLeft = 90; // Temps en secondes
+
+    function startCountdown() {
+      const interval = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          resendBtn.disabled = false;
+          resendBtn.textContent = "Renvoyer le code";
+          resendBtn.onclick = () => {
+            location.href = "verif_login"; // Modifier si besoin
+          };
+        } else {
+          let minutes = Math.floor(timeLeft / 60);
+          let seconds = timeLeft % 60;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+          resendBtn.textContent = Renvoyer le code (${minutes}:${seconds});
+          timeLeft--;
+        }
+      }, 1000);
+    }
+
+    startCountdown();
+  </script>
+</body>
+</html>

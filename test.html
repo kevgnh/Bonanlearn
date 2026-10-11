@@ -1,0 +1,50 @@
+<div style="
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #7a4791;
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: 600px;
+  margin: 40px auto;
+">
+
+  <h2 style="color: #7a4791; text-align: center;">Quiz : Étude du sens de variation</h2>
+
+  <p style="font-size: 16px; line-height: 1.6;">
+    Soit la fonction <strong>f(x) = -2x + 3</strong>, définie sur ℝ.
+  </p>
+
+  <p style="font-size: 16px; line-height: 1.6; font-weight: bold;">
+    Comment évolue la fonction <em>f</em> sur l’intervalle <strong>[1, 4]</strong> ?
+  </p>
+
+  <form action="/trvariation" method="post">
+    <label style="display: block; margin-bottom: 10px; cursor: pointer;">
+      <input type="checkbox" name="reponse" value="1" style="margin-right: 8px;">
+      Elle est croissante sur [1, 4].
+    </label>
+
+    <label style="display: block; margin-bottom: 10px; cursor: pointer;">
+      <input type="checkbox" name="reponse" value="2" style="margin-right: 8px;">
+      Elle est décroissante sur [1, 4].
+    </label>
+
+    <label style="display: block; margin-bottom: 10px; cursor: pointer;">
+      <input type="checkbox" name="reponse" value="3" style="margin-right: 8px;">
+      Elle est constante sur [1, 4].
+    </label>
+
+    <button type="submit" style="
+      margin-top: 20px;
+      background-color: #7a4791;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    ">Valider</button>
+  </form>
+
+</div>
